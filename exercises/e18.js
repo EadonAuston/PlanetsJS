@@ -5,8 +5,27 @@ import { data } from "../data/data";
 // Return example: 1902
 
 export function getGreatestDiscoveryYear(data) {
-  // Your code goes here...
-  // feel free to import your `maxBy` or `minBy` methods from previous lessons
+    // Create a map to store the count of asteroids discovered each year
+    const yearCounts = new Map();
+    for (const asteroid of data.asteroids) {
+      const { discoveryYear } = asteroid;
+      if (yearCounts.has(discoveryYear)) {
+        yearCounts.set(discoveryYear, yearCounts.get(discoveryYear) + 1);
+      } else {
+        yearCounts.set(discoveryYear, 1);
+      }
+    }
+  
+    // Find the year with the highest count of asteroids discovered
+    let mostAsteroidsYear = 0;
+    let mostAsteroidsCount = 0;
+    for (const [year, count] of yearCounts.entries()) {
+      if (count > mostAsteroidsCount) {
+        mostAsteroidsYear = year;
+        mostAsteroidsCount = count;
+      }
+    }
+    return mostAsteroidsYear;
 }
 
 // === TEST YOURSELF ===

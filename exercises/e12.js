@@ -5,7 +5,9 @@ import { data } from "../data/data";
 // Return example: 42
 
 export function allPlanetsMoonsCount(data) {
-  // Your code goes here...
+  const totalMoons = data.planets.filter(planet => planet.moons).reduce((total, planet) => total + planet.moons.length, 0);
+  return totalMoons;
+  
 }
 
 
